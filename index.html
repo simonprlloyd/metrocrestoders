@@ -19,8 +19,8 @@ html,body{min-height:100%;background:#f0f4ff;font-family:'Nunito',sans-serif;}
   --text:#1a1a2e;--text2:#4a5568;--text3:#9ca3af;
   --border:#e2e8f5;
   --green:#10b981;--green-light:#d1fae5;--green-dark:#065f46;
-  --amber:#f59e0b;--amber-light:#fef3c7;
-  --red:#ef4444;--red-light:#fee2e2;
+  --amber:#f59e0b;--amber-light:#fef3c7;--amber-dark:#92400e;
+  --red:#ef4444;--red-light:#fee2e2;--red-dark:#991b1b;
   --r:14px;--r2:20px;--r3:28px;
 }
 .app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);}
@@ -50,37 +50,77 @@ html,body{min-height:100%;background:#f0f4ff;font-family:'Nunito',sans-serif;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* CARDS */
-.card{background:#fff;border-radius:var(--r3);padding:0;margin-bottom:12px;border:1px solid var(--border);overflow:hidden;box-shadow:0 2px 16px rgba(26,86,219,0.05);}
-.card-inner{padding:18px;}
-
-/* BANNER */
-.banner{border-radius:var(--r3);padding:20px;margin-bottom:14px;position:relative;overflow:hidden;}
-.banner::before{content:'';position:absolute;top:-20px;right:-20px;width:90px;height:90px;background:rgba(255,255,255,0.07);border-radius:50%;}
-.banner-ic{font-size:24px;margin-bottom:8px;}
-.banner-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:4px;}
-.banner-sub{font-size:13px;color:rgba(255,255,255,0.8);font-weight:600;line-height:1.5;}
-
-/* SUCCESS */
-.success{background:var(--green-light);border:1.5px solid rgba(16,185,129,0.3);border-radius:var(--r3);padding:20px;text-align:center;display:none;margin-bottom:12px;}
-.success.show{display:block;}
-.success-ic{font-size:40px;margin-bottom:10px;}
-.success-title{font-size:18px;font-weight:900;color:var(--green-dark);}
-.success-sub{font-size:13px;color:#065f46;margin-top:4px;font-weight:600;line-height:1.5;}
+.card{background:#fff;border-radius:var(--r3);padding:18px;margin-bottom:12px;border:1px solid var(--border);box-shadow:0 2px 16px rgba(26,86,219,0.05);}
 
 /* FORM */
-.flbl{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px;}
+.flbl{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px;display:block;}
 .fin{width:100%;padding:13px 15px;border:2px solid var(--border);border-radius:var(--r2);font-size:15px;color:var(--text);background:var(--bg);outline:none;font-family:'Nunito',sans-serif;font-weight:700;transition:border-color .2s;margin-bottom:12px;-webkit-appearance:none;}
 .fin:focus{border-color:var(--blue);background:#fff;}
 .fin::placeholder{color:var(--text3);font-weight:600;}
 .fsel{width:100%;padding:13px 15px;border:2px solid var(--border);border-radius:var(--r2);font-size:15px;color:var(--text);background:var(--bg);outline:none;font-family:'Nunito',sans-serif;font-weight:700;margin-bottom:12px;-webkit-appearance:none;}
-.fsel:focus{border-color:var(--blue);}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.fgrid .fin,.fgrid .fsel{margin-bottom:0;}
 .fsub{width:100%;padding:15px;border:none;border-radius:var(--r2);color:#fff;font-size:16px;font-weight:900;cursor:pointer;font-family:'Nunito',sans-serif;transition:opacity .2s;margin-top:4px;}
 .fsub:active{opacity:.85;}
 .fsub-blue{background:var(--blue);}
-.fsub-green{background:var(--green);}
 
-/* STATUS */
+/* SUCCESS */
+.success{background:var(--green-light);border:1.5px solid rgba(16,185,129,0.3);border-radius:var(--r3);padding:24px;text-align:center;display:none;margin-bottom:12px;}
+.success.show{display:block;}
+
+/* ORDER TYPE SELECTOR */
+.type-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
+.type-card{background:var(--bg);border:2px solid var(--border);border-radius:var(--r2);padding:14px 8px;text-align:center;cursor:pointer;transition:all .2s;}
+.type-card.on{background:var(--blue-light);border-color:var(--blue);}
+.type-card:active{opacity:.85;}
+.type-ic{font-size:24px;margin-bottom:6px;}
+.type-name{font-size:11px;font-weight:800;color:var(--text);}
+.type-card.on .type-name{color:var(--blue);}
+.type-sub{font-size:10px;color:var(--text3);margin-top:2px;font-weight:600;}
+
+/* ITEM SELECTOR */
+.items-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.item-row{display:flex;align-items:center;gap:12px;background:var(--bg);border:2px solid var(--border);border-radius:var(--r2);padding:12px 14px;transition:border-color .2s;}
+.item-row.on{border-color:var(--blue);background:var(--blue-light);}
+.item-check{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;cursor:pointer;}
+.item-row.on .item-check{background:var(--blue);border-color:var(--blue);}
+.item-check-ic{color:#fff;font-size:12px;font-weight:900;opacity:0;}
+.item-row.on .item-check-ic{opacity:1;}
+.item-ic{font-size:20px;flex-shrink:0;}
+.item-name{font-size:13px;font-weight:800;color:var(--text);flex:1;}
+.item-sub{font-size:11px;color:var(--text3);margin-top:1px;font-weight:600;}
+.item-qty{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.qty-btn{width:28px;height:28px;border-radius:8px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;cursor:pointer;color:var(--text);transition:all .15s;}
+.qty-btn:active{background:var(--blue-light);}
+.qty-val{font-size:14px;font-weight:900;color:var(--text);min-width:20px;text-align:center;}
+
+/* STEP BAR */
+.step-bar{display:flex;align-items:center;margin-bottom:20px;}
+.step-item{flex:1;text-align:center;position:relative;}
+.step-item::after{content:'';position:absolute;top:11px;left:50%;width:100%;height:2px;background:var(--border);z-index:0;}
+.step-item:last-child::after{display:none;}
+.step-dot{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;margin:0 auto 4px;position:relative;z-index:1;}
+.step-dot.done{background:var(--blue);color:#fff;}
+.step-dot.active{background:var(--blue);color:#fff;box-shadow:0 0 0 3px rgba(26,86,219,0.15);}
+.step-dot.pending{background:var(--border);color:var(--text3);}
+.step-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;}
+.step-lbl.active{color:var(--blue);}
+.step-lbl.done{color:var(--green);}
+.step-lbl.pending{color:var(--text3);}
+
+/* TIME SLOTS */
+.slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px;}
+.slot{padding:9px 4px;background:var(--bg);border:2px solid var(--border);border-radius:10px;text-align:center;font-size:11px;font-weight:800;color:var(--text);cursor:pointer;transition:all .15s;}
+.slot.on{background:var(--blue);border-color:var(--blue);color:#fff;}
+.slot.taken{background:#f3f4f6;color:var(--text3);cursor:default;border-color:transparent;}
+
+/* SUMMARY */
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
+.summary-row:last-child{border-bottom:none;}
+.sk{font-size:13px;color:var(--text2);font-weight:600;}
+.sv{font-size:13px;font-weight:800;color:var(--text);}
+
+/* ORDER STATUS */
 .status-card{background:#fff;border-radius:var(--r3);padding:18px;margin-bottom:10px;border:1px solid var(--border);}
 .status-hdr{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
 .status-ic{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
@@ -108,11 +148,13 @@ html,body{min-height:100%;background:#f0f4ff;font-family:'Nunito',sans-serif;}
 .not-found{background:var(--red-light);border:1.5px solid rgba(239,68,68,0.2);border-radius:var(--r2);padding:16px;text-align:center;display:none;margin-bottom:12px;}
 .not-found.show{display:block;}
 
-/* TIME SLOTS */
-.slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px;}
-.slot{padding:9px 4px;background:var(--bg);border:2px solid var(--border);border-radius:10px;text-align:center;font-size:11px;font-weight:800;color:var(--text);cursor:pointer;transition:all .15s;}
-.slot.on{background:var(--blue);border-color:var(--blue);color:#fff;}
-.slot:active{opacity:.8;}
+/* LOOKUP */
+.lookup-wrap{display:flex;gap:9px;margin-top:14px;}
+.lookup-input{flex:1;padding:13px 15px;border:2px solid var(--border);border-radius:var(--r2);font-size:16px;color:var(--text);background:var(--bg);outline:none;font-family:'Nunito',sans-serif;font-weight:700;transition:border-color .2s;}
+.lookup-input:focus{border-color:var(--blue);}
+.lookup-input::placeholder{color:var(--text3);font-weight:600;}
+.lookup-btn{padding:13px 16px;background:var(--blue);border:none;border-radius:var(--r2);color:#fff;font-size:14px;font-weight:900;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;}
+.lookup-btn:active{opacity:.85;}
 
 /* LOYALTY */
 .loyalty-hero{background:linear-gradient(135deg,#1a56db,#4f8ef7);border-radius:var(--r3);padding:20px;margin-bottom:12px;position:relative;overflow:hidden;}
@@ -131,9 +173,6 @@ html,body{min-height:100%;background:#f0f4ff;font-family:'Nunito',sans-serif;}
 .stamp-off{background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.08);}
 .stamp-gift{background:rgba(255,215,0,0.18);border:1.5px solid rgba(255,215,0,0.35);}
 .reward-strip{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.2);border-radius:var(--r);padding:10px 12px;margin-top:12px;display:flex;gap:9px;align-items:center;}
-.rs-ic{font-size:18px;flex-shrink:0;}
-.rs-title{font-size:12px;font-weight:800;color:#ffd700;}
-.rs-sub{font-size:10px;color:rgba(255,215,0,0.7);font-weight:600;margin-top:2px;}
 
 /* INFO */
 .info-card{background:#fff;border-radius:var(--r2);margin-bottom:10px;overflow:hidden;border:1px solid var(--border);}
@@ -149,27 +188,99 @@ html,body{min-height:100%;background:#f0f4ff;font-family:'Nunito',sans-serif;}
 
 /* ADD HOME */
 .add-home{background:var(--blue-light);border:1.5px solid rgba(26,86,219,0.12);border-radius:var(--r2);padding:13px;margin-bottom:12px;display:flex;gap:10px;align-items:center;}
-.ah-ic{font-size:24px;flex-shrink:0;}
-.ah-title{font-size:12px;font-weight:800;color:var(--blue2);}
-.ah-sub{font-size:11px;color:var(--blue);font-weight:600;margin-top:2px;line-height:1.4;}
-
-/* LOOKUP */
-.lookup-wrap{display:flex;gap:9px;margin-top:14px;}
-.lookup-input{flex:1;padding:13px 15px;border:2px solid var(--border);border-radius:var(--r2);font-size:16px;color:var(--text);background:var(--bg);outline:none;font-family:'Nunito',sans-serif;font-weight:700;transition:border-color .2s;}
-.lookup-input:focus{border-color:var(--blue);}
-.lookup-input::placeholder{color:var(--text3);font-weight:600;}
-.lookup-btn{padding:13px 16px;background:var(--blue);border:none;border-radius:var(--r2);color:#fff;font-size:14px;font-weight:900;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;transition:opacity .2s;}
-.lookup-btn:active{opacity:.85;}
 
 /* TOAST */
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:#fff;padding:10px 20px;border-radius:100px;font-size:13px;font-weight:700;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;z-index:300;}
 .toast.show{opacity:1;}
+
+/* NEXT BTN */
+.next-btn{width:100%;padding:15px;background:var(--blue);border:none;border-radius:var(--r2);color:#fff;font-size:16px;font-weight:900;cursor:pointer;font-family:'Nunito',sans-serif;transition:opacity .2s;margin-top:8px;}
+.next-btn:active{opacity:.85;}
+.back-btn{width:100%;padding:13px;background:transparent;border:none;color:var(--text3);font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Nunito',sans-serif;}
+
+/* ===== DOPAMINE EFFECTS ===== */
+
+/* Particle canvas */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;overflow:hidden;}
+
+/* Ripple effect */
+.ripple{position:absolute;border-radius:50%;background:rgba(26,86,219,0.25);transform:scale(0);animation:ripple-go .6s linear;pointer-events:none;}
+@keyframes ripple-go{to{transform:scale(4);opacity:0;}}
+
+/* Bounce on tap */
+.bounce-tap:active{animation:bounce-it .2s ease;}
+@keyframes bounce-it{0%{transform:scale(1)}50%{transform:scale(0.92)}100%{transform:scale(1)}}
+
+/* Type card selected pulse */
+.type-card.on{animation:pulse-select .3s ease;}
+@keyframes pulse-select{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+/* Item row shake on add */
+.item-row.just-added{animation:item-pop .35s cubic-bezier(.36,.07,.19,.97);}
+@keyframes item-pop{0%{transform:scale(1)}30%{transform:scale(1.04) translateX(-3px)}60%{transform:scale(0.97) translateX(3px)}100%{transform:scale(1) translateX(0)}}
+
+/* Qty button bounce */
+.qty-btn:active{animation:qty-bounce .15s ease;}
+@keyframes qty-bounce{0%{transform:scale(1)}50%{transform:scale(0.8)}100%{transform:scale(1)}}
+
+/* Step dot celebration */
+.step-dot.done{animation:stamp-in .4s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes stamp-in{0%{transform:scale(0) rotate(-180deg)}70%{transform:scale(1.2) rotate(10deg)}100%{transform:scale(1) rotate(0)}}
+
+/* Next button shimmer */
+.next-btn{position:relative;overflow:hidden;}
+.next-btn::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:shimmer 2.5s infinite;}
+@keyframes shimmer{0%{left:-100%}100%{left:200%}}
+
+/* Success confetti explosion */
+.confetti-piece{position:fixed;width:10px;height:10px;border-radius:2px;pointer-events:none;z-index:1000;animation:confetti-fall 1.2s ease-out forwards;}
+@keyframes confetti-fall{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1;}100%{transform:translateY(600px) rotate(720deg) scale(0.5);opacity:0;}}
+
+/* Slot selected pop */
+.slot.on{animation:slot-pop .2s cubic-bezier(.36,.07,.19,.97);}
+@keyframes slot-pop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+
+/* Progress bar fill animation */
+.step-bar-fill{height:2px;background:var(--blue);position:absolute;top:11px;left:0;transition:width .4s ease;}
+
+/* Check mark draw */
+.item-check-ic{transition:opacity .15s, transform .15s;}
+.item-row.on .item-check-ic{opacity:1;transform:scale(1.2);}
+
+/* Floating label on input focus */
+.fin:focus,.fsel:focus{transform:scale(1.01);transition:all .2s;}
+
+/* Success icon pop */
+.success-ic-wrap{animation:pop-in .5s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes pop-in{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+
+/* Glow on type card select */
+.type-card.on{box-shadow:0 0 0 3px rgba(26,86,219,0.2), 0 8px 24px rgba(26,86,219,0.15);}
+
+/* Toast slide up */
+.toast{bottom:-60px;transition:bottom .3s cubic-bezier(.175,.885,.32,1.275),opacity .2s;}
+.toast.show{bottom:28px;opacity:1;}
+
+/* Loyalty stamp pop */
+.stamp-pop{animation:stamp-pop .4s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes stamp-pop{0%{transform:scale(0) rotate(-30deg)}70%{transform:scale(1.3) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+/* Number counter animation */
+@keyframes count-up{from{transform:translateY(10px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.count-anim{animation:count-up .3s ease;}
+
+/* Page transition */
+.page.on{animation:page-slide .3s cubic-bezier(.25,.46,.45,.94) both;}
+@keyframes page-slide{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+/* Pulse ring on active elements */
+@keyframes pulse-ring{0%{transform:scale(1);opacity:0.6}100%{transform:scale(1.5);opacity:0}}
+.pulse-ring{position:absolute;border-radius:50%;border:2px solid var(--blue);animation:pulse-ring 1.2s ease-out infinite;}
 </style>
 </head>
 <body>
+<canvas id="particles"></canvas>
 <div class="app">
-
-  <!-- HEADER -->
   <div class="header">
     <div class="hdr-top">
       <div class="hdr-logo">👔</div>
@@ -179,148 +290,188 @@ html,body{min-height:100%;background:#f0f4ff;font-family:'Nunito',sans-serif;}
       </div>
     </div>
     <div class="hdr-hours">
-      <div><div class="hours-lbl">Mon/Tue/Thu</div><div class="hours-val">7AM – 6PM</div></div>
+      <div><div class="hours-lbl">Mon/Tue/Thu</div><div class="hours-val">7AM–6PM</div></div>
       <div class="hours-div"></div>
-      <div><div class="hours-lbl">Wed/Fri</div><div class="hours-val">7AM – 5PM</div></div>
+      <div><div class="hours-lbl">Wed/Fri</div><div class="hours-val">7AM–5PM</div></div>
       <div class="hours-div"></div>
-      <div><div class="hours-lbl">Saturday</div><div class="hours-val">9AM – 3PM</div></div>
+      <div><div class="hours-lbl">Saturday</div><div class="hours-val">9AM–3PM</div></div>
     </div>
   </div>
 
-  <!-- NAV -->
   <div class="nav-tabs">
-    <div class="ntab on" id="nt0" onclick="goPage(0)">📦 MY ORDER</div>
-    <div class="ntab" id="nt1" onclick="goPage(1)">📅 SCHEDULE</div>
-    <div class="ntab" id="nt2" onclick="goPage(2)">🚗 PICKUP</div>
-    <div class="ntab" id="nt3" onclick="goPage(3)">⭐ LOYALTY</div>
-    <div class="ntab" id="nt4" onclick="goPage(4)">ℹ️ INFO</div>
+    <div class="ntab on" id="nt0" onclick="goPage(0)">🧺 PLACE ORDER</div>
+    <div class="ntab" id="nt1" onclick="goPage(1)">📦 MY ORDER</div>
+    <div class="ntab" id="nt2" onclick="goPage(2)">⭐ LOYALTY</div>
+    <div class="ntab" id="nt3" onclick="goPage(3)">ℹ️ INFO</div>
   </div>
 
   <div class="pages">
 
-    <!-- PAGE 0: MY ORDER -->
+    <!-- PAGE 0: PLACE ORDER -->
     <div class="page on" id="page0">
-      <div class="card card-inner">
+
+      <!-- STEP 1: ORDER TYPE -->
+      <div id="order-step1">
+        <div class="step-bar">
+          <div class="step-item"><div class="step-dot active">1</div><div class="step-lbl active">Type</div></div>
+          <div class="step-item"><div class="step-dot pending">2</div><div class="step-lbl pending">Items</div></div>
+          <div class="step-item"><div class="step-dot pending">3</div><div class="step-lbl pending">Schedule</div></div>
+          <div class="step-item"><div class="step-dot pending">4</div><div class="step-lbl pending">Your Info</div></div>
+          <div class="step-item"><div class="step-dot pending">5</div><div class="step-lbl pending">Confirm</div></div>
+        </div>
+        <div class="card">
+          <div style="font-size:20px;font-weight:900;color:var(--text);margin-bottom:4px;">How are you dropping off? 👔</div>
+          <div style="font-size:13px;color:var(--text2);font-weight:600;margin-bottom:16px;line-height:1.5;">Choose how you want to get your clothes to us.</div>
+          <div class="type-grid">
+            <div class="type-card" id="type-walkin" onclick="selectType('walkin')">
+              <div class="type-ic">🚶</div>
+              <div class="type-name">Walk In</div>
+              <div class="type-sub">Come inside</div>
+            </div>
+            <div class="type-card" id="type-drivethru" onclick="selectType('drivethru')">
+              <div class="type-ic">🚗</div>
+              <div class="type-name">Drive-Thru</div>
+              <div class="type-sub">Stay in car</div>
+            </div>
+            <div class="type-card" id="type-pickup" onclick="selectType('pickup')">
+              <div class="type-ic">🏠</div>
+              <div class="type-name">Home Pickup</div>
+              <div class="type-sub">We come to you</div>
+            </div>
+          </div>
+          <button class="next-btn" id="step1-next" onclick="goStep(2)" disabled>Next — Choose Items →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: ITEMS -->
+      <div id="order-step2" style="display:none;">
+        <div class="step-bar">
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Type</div></div>
+          <div class="step-item"><div class="step-dot active">2</div><div class="step-lbl active">Items</div></div>
+          <div class="step-item"><div class="step-dot pending">3</div><div class="step-lbl pending">Schedule</div></div>
+          <div class="step-item"><div class="step-dot pending">4</div><div class="step-lbl pending">Your Info</div></div>
+          <div class="step-item"><div class="step-dot pending">5</div><div class="step-lbl pending">Confirm</div></div>
+        </div>
+        <div class="card">
+          <div style="font-size:20px;font-weight:900;color:var(--text);margin-bottom:4px;">What are you bringing? 👕</div>
+          <div style="font-size:13px;color:var(--text2);font-weight:600;margin-bottom:16px;">Select all items and adjust quantities.</div>
+          <div class="items-list" id="items-list"></div>
+          <div style="background:var(--blue-light);border-radius:var(--r);padding:10px 12px;margin-bottom:12px;">
+            <div style="font-size:11px;font-weight:700;color:var(--blue2);">Special instructions / stains / alterations</div>
+            <input class="fin" id="item-notes" placeholder="Describe any stains, special care needs..." style="margin-top:8px;margin-bottom:0;background:#fff;">
+          </div>
+          <button class="next-btn" id="step2-next" onclick="goStep(3)" disabled>Next — Schedule →</button>
+          <button class="back-btn" onclick="goStep(1)">← Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: SCHEDULE -->
+      <div id="order-step3" style="display:none;">
+        <div class="step-bar">
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Type</div></div>
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Items</div></div>
+          <div class="step-item"><div class="step-dot active">3</div><div class="step-lbl active">Schedule</div></div>
+          <div class="step-item"><div class="step-dot pending">4</div><div class="step-lbl pending">Your Info</div></div>
+          <div class="step-item"><div class="step-dot pending">5</div><div class="step-lbl pending">Confirm</div></div>
+        </div>
+        <div class="card">
+          <div style="font-size:20px;font-weight:900;color:var(--text);margin-bottom:4px;" id="sched-title">When are you coming? 📅</div>
+          <div style="font-size:13px;color:var(--text2);font-weight:600;margin-bottom:16px;" id="sched-sub">Pick your drop-off date and time slot.</div>
+          <label class="flbl">Date</label>
+          <input class="fin" id="sched-date" type="date">
+          <label class="flbl" style="margin-bottom:8px;">Time Slot</label>
+          <div class="slots-grid" id="slots-grid"></div>
+          <div id="pickup-addr-wrap" style="display:none;">
+            <label class="flbl">Your Address</label>
+            <input class="fin" id="pickup-addr" placeholder="Full address including apt number">
+          </div>
+          <button class="next-btn" id="step3-next" onclick="goStep(4)" disabled>Next — Your Info →</button>
+          <button class="back-btn" onclick="goStep(2)">← Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: YOUR INFO -->
+      <div id="order-step4" style="display:none;">
+        <div class="step-bar">
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Type</div></div>
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Items</div></div>
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Schedule</div></div>
+          <div class="step-item"><div class="step-dot active">4</div><div class="step-lbl active">Your Info</div></div>
+          <div class="step-item"><div class="step-dot pending">5</div><div class="step-lbl pending">Confirm</div></div>
+        </div>
+        <div class="card">
+          <div style="font-size:20px;font-weight:900;color:var(--text);margin-bottom:4px;">Your details 👤</div>
+          <div style="font-size:13px;color:var(--text2);font-weight:600;margin-bottom:16px;">So we know who you are and can text you when ready.</div>
+          <label class="flbl">Full Name</label>
+          <input class="fin" id="info-name" placeholder="Your full name" oninput="checkStep4()">
+          <label class="flbl">Phone Number</label>
+          <input class="fin" id="info-phone" type="tel" placeholder="(972) 000-0000" maxlength="14" oninput="formatPhone(this);checkStep4()">
+          <div style="background:var(--green-light);border-radius:var(--r);padding:10px 12px;margin-bottom:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--green-dark);">📱 We'll text you the second your order is ready. No more calling to check!</div>
+          </div>
+          <button class="next-btn" id="step4-next" onclick="goStep(5)" disabled>Review Order →</button>
+          <button class="back-btn" onclick="goStep(3)">← Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: CONFIRM -->
+      <div id="order-step5" style="display:none;">
+        <div class="step-bar">
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Type</div></div>
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Items</div></div>
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Schedule</div></div>
+          <div class="step-item"><div class="step-dot done">✓</div><div class="step-lbl done">Your Info</div></div>
+          <div class="step-item"><div class="step-dot active">5</div><div class="step-lbl active">Confirm</div></div>
+        </div>
+        <div class="card">
+          <div style="font-size:20px;font-weight:900;color:var(--text);margin-bottom:14px;">Review Your Order ✅</div>
+          <div id="order-summary"></div>
+          <button class="next-btn" onclick="submitOrder()">PLACE ORDER →</button>
+          <button class="back-btn" onclick="goStep(4)">← Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: SUCCESS -->
+      <div id="order-step6" style="display:none;">
+        <div class="success show">
+          <div style="font-size:52px;margin-bottom:14px;">🎉</div>
+          <div style="font-size:24px;font-weight:900;color:var(--green-dark);margin-bottom:6px;">Order Placed!</div>
+          <div style="font-size:14px;color:#065f46;font-weight:600;line-height:1.6;margin-bottom:16px;">Thanks! We have your order. You'll get a text at <strong id="confirm-phone-display"></strong> the second it's ready.</div>
+          <div style="background:#fff;border-radius:var(--r2);padding:14px;margin-bottom:14px;text-align:left;" id="confirm-summary"></div>
+          <a href="tel:9722431982" style="display:flex;align-items:center;justify-content:center;gap:8px;background:var(--green);color:#fff;border-radius:var(--r2);padding:13px;font-size:14px;font-weight:900;text-decoration:none;margin-bottom:8px;">📞 Call Us — (972) 243-1982</a>
+          <button style="width:100%;padding:13px;background:transparent;border:2px solid var(--border);border-radius:var(--r2);color:var(--text);font-size:13px;font-weight:700;cursor:pointer;" onclick="resetOrder()">Place Another Order</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PAGE 1: MY ORDER -->
+    <div class="page" id="page1">
+      <div class="card">
         <div style="font-size:20px;font-weight:900;color:var(--text);margin-bottom:4px;">Check Your Order 👔</div>
-        <div style="font-size:14px;color:var(--text2);font-weight:600;line-height:1.5;">Enter the phone number you gave us at drop off.</div>
+        <div style="font-size:14px;color:var(--text2);font-weight:600;line-height:1.5;">Enter the phone number you gave us.</div>
         <div class="lookup-wrap">
           <input class="lookup-input" id="lookup-phone" type="tel" placeholder="(972) 000-0000" maxlength="14" oninput="formatPhone(this)">
           <button class="lookup-btn" onclick="lookupOrder()">Check →</button>
         </div>
       </div>
       <div class="not-found" id="not-found-msg">
-        <div style="font-size:32px;margin-bottom:8px;">🔍</div>
-        <div style="font-size:15px;font-weight:900;color:#991b1b;">No order found</div>
-        <div style="font-size:13px;color:#b91c1c;margin-top:4px;font-weight:600;line-height:1.5;">Check the number or call us at (972) 243-1982.</div>
+        <div style="font-size:28px;margin-bottom:8px;">🔍</div>
+        <div style="font-size:15px;font-weight:900;color:var(--red-dark);">No order found</div>
+        <div style="font-size:13px;color:#b91c1c;margin-top:4px;font-weight:600;">Check the number or call (972) 243-1982.</div>
       </div>
       <div id="order-result"></div>
       <div class="add-home">
-        <div class="ah-ic">📱</div>
-        <div><div class="ah-title">Add to Home Screen</div><div class="ah-sub">Tap Share → "Add to Home Screen" for quick access next time.</div></div>
+        <div style="font-size:24px;flex-shrink:0;">📱</div>
+        <div><div style="font-size:12px;font-weight:800;color:var(--blue2);">Add to Home Screen</div><div style="font-size:11px;color:var(--blue);font-weight:600;margin-top:2px;">Tap Share → Add to Home Screen for quick access.</div></div>
       </div>
     </div>
 
-    <!-- PAGE 1: SCHEDULE DROP-OFF -->
-    <div class="page" id="page1">
-      <div class="banner" style="background:linear-gradient(135deg,#1a56db,#4f8ef7);">
-        <div class="banner-ic">📅</div>
-        <div class="banner-title">Schedule a Drop-Off</div>
-        <div class="banner-sub">Pick your time slot and skip the wait. We'll be ready when you arrive.</div>
-      </div>
-      <div class="success" id="sched-success">
-        <div class="success-ic">✅</div>
-        <div class="success-title">Drop-Off Scheduled!</div>
-        <div class="success-sub">We'll be expecting you. See you soon at 3709 Spring Valley Rd!</div>
-      </div>
-      <div class="card card-inner">
-        <div class="flbl">Your Name</div>
-        <input class="fin" id="sc-name" placeholder="Full name">
-        <div class="flbl">Phone Number</div>
-        <input class="fin" id="sc-phone" type="tel" placeholder="(972) 000-0000" maxlength="14" oninput="formatPhone(this)">
-        <div class="flbl">Date</div>
-        <input class="fin" id="sc-date" type="date">
-        <div class="flbl" style="margin-bottom:8px;">Pick a Time Slot</div>
-        <div class="slots-grid" id="slots-grid"></div>
-        <div class="flbl">What are you dropping off?</div>
-        <select class="fsel" id="sc-items">
-          <option>Dress shirts</option>
-          <option>Suit jacket</option>
-          <option>Dress / gown</option>
-          <option>Pants / slacks</option>
-          <option>Coat / jacket</option>
-          <option>Bedding / comforter</option>
-          <option>Alterations / repairs</option>
-          <option>Shoe repair</option>
-          <option>Mixed items</option>
-        </select>
-        <div class="flbl">Notes (optional)</div>
-        <input class="fin" id="sc-notes" placeholder="Stains, special care, alterations...">
-        <button class="fsub fsub-blue" onclick="submitSchedule()">SCHEDULE MY DROP-OFF →</button>
-        <div style="text-align:center;margin-top:9px;font-size:11px;color:var(--text3);font-weight:600;">Drive-thru available · 3709 Spring Valley Rd</div>
-      </div>
-    </div>
-
-    <!-- PAGE 2: HOME PICKUP -->
+    <!-- PAGE 2: LOYALTY -->
     <div class="page" id="page2">
-      <div class="banner" style="background:linear-gradient(135deg,#065f46,#10b981);">
-        <div class="banner-ic">🚗</div>
-        <div class="banner-title">Home Pickup Service</div>
-        <div class="banner-sub">We come to you! Schedule a pickup and we'll collect your clothes right from your door.</div>
-      </div>
-      <div class="success" id="pickup-success">
-        <div class="success-ic">🎉</div>
-        <div class="success-title">Pickup Requested!</div>
-        <div class="success-sub">We'll call you to confirm. Thank you for choosing Metrocrest!</div>
-      </div>
-      <div class="card card-inner">
-        <div style="background:#f0fdf4;border-radius:12px;padding:10px 12px;margin-bottom:14px;display:flex;gap:8px;align-items:center;border:1px solid rgba(16,185,129,0.2);">
-          <div style="font-size:16px;">✨</div>
-          <div style="font-size:13px;font-weight:800;color:#065f46;">Premium service — we come to your door</div>
-        </div>
-        <div class="flbl">Your Name</div>
-        <input class="fin" id="pu-name" placeholder="Full name">
-        <div class="flbl">Phone Number</div>
-        <input class="fin" id="pu-phone" type="tel" placeholder="(972) 000-0000" maxlength="14" oninput="formatPhone(this)">
-        <div class="flbl">Pickup Address</div>
-        <input class="fin" id="pu-addr" placeholder="Your home or office address">
-        <div class="fgrid" style="margin-bottom:12px;">
-          <div>
-            <div class="flbl">Date</div>
-            <input class="fin" id="pu-date" type="date" style="margin-bottom:0;">
-          </div>
-          <div>
-            <div class="flbl">Time Window</div>
-            <select class="fsel" id="pu-time" style="margin-bottom:0;">
-              <option>7:00 – 9:00 AM</option>
-              <option>9:00 – 11:00 AM</option>
-              <option>11:00 AM – 1:00 PM</option>
-              <option>1:00 – 3:00 PM</option>
-              <option>3:00 – 5:00 PM</option>
-            </select>
-          </div>
-        </div>
-        <div class="flbl">What needs cleaning?</div>
-        <select class="fsel" id="pu-items">
-          <option>Dress shirts</option>
-          <option>Suit jacket</option>
-          <option>Dress / gown</option>
-          <option>Pants / slacks</option>
-          <option>Coat / jacket</option>
-          <option>Bedding / comforter</option>
-          <option>Mixed items</option>
-        </select>
-        <div class="flbl">Special Instructions</div>
-        <input class="fin" id="pu-notes" placeholder="Gate code, apartment #, stains...">
-        <button class="fsub fsub-green" onclick="submitPickup()">REQUEST HOME PICKUP →</button>
-        <div style="text-align:center;margin-top:9px;font-size:11px;color:var(--text3);font-weight:600;">We'll call to confirm · (972) 243-1982</div>
-      </div>
-    </div>
-
-    <!-- PAGE 3: LOYALTY -->
-    <div class="page" id="page3">
-      <div class="card card-inner">
+      <div class="card">
         <div style="font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;">Check Your Rewards ⭐</div>
-        <div style="font-size:13px;color:var(--text2);font-weight:600;line-height:1.5;margin-bottom:14px;">Enter your phone number to see your loyalty stamps.</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:600;margin-bottom:14px;">Enter your phone number to see your loyalty stamps.</div>
         <input class="fin" id="loyalty-phone" type="tel" placeholder="(972) 000-0000" maxlength="14" oninput="formatPhone(this)">
         <button class="fsub fsub-blue" onclick="lookupLoyalty()">CHECK MY STAMPS →</button>
       </div>
@@ -329,19 +480,18 @@ html,body{min-height:100%;background:#f0f4ff;font-family:'Nunito',sans-serif;}
         <div class="irow"><div class="iic">👔</div><div><div class="ilbl">Earn</div><div class="ival">1 stamp per visit</div></div></div>
         <div class="irow"><div class="iic">🎁</div><div><div class="ilbl">Reward</div><div class="ival">10 stamps = FREE cleaning</div></div></div>
         <div class="irow"><div class="iic">✅</div><div><div class="ilbl">Valid on</div><div class="ival">Any single garment</div></div></div>
-        <div class="irow"><div class="iic">📱</div><div><div class="ilbl">Stamps added</div><div class="ival">Automatically at drop off</div></div></div>
       </div>
     </div>
 
-    <!-- PAGE 4: INFO -->
-    <div class="page" id="page4">
+    <!-- PAGE 3: INFO -->
+    <div class="page" id="page3">
       <div class="info-card">
         <div class="irow"><div class="iic">📍</div><div><div class="ilbl">Address</div><div class="ival">3709 Spring Valley Rd, Addison TX 75001</div></div></div>
         <div class="irow"><div class="iic">📞</div><div><div class="ilbl">Phone</div><div class="ival">(972) 243-1982</div></div></div>
         <div class="irow"><div class="iic">🕐</div><div><div class="ilbl">Mon / Tue / Thu</div><div class="ival">7:00 AM – 6:00 PM</div></div></div>
         <div class="irow"><div class="iic">🕐</div><div><div class="ilbl">Wed / Fri</div><div class="ival">7:00 AM – 5:00 PM</div></div></div>
         <div class="irow"><div class="iic">🕐</div><div><div class="ilbl">Saturday</div><div class="ival">9:00 AM – 3:00 PM</div></div></div>
-        <div class="irow"><div class="iic">🚗</div><div><div class="ilbl">Drive-Thru</div><div class="ival">Yes — super convenient!</div></div></div>
+        <div class="irow"><div class="iic">🚗</div><div><div class="ilbl">Drive-Thru</div><div class="ival">Yes — stay in your car!</div></div></div>
         <div class="irow"><div class="iic">⚡</div><div><div class="ilbl">Same Day</div><div class="ival">Available on most items</div></div></div>
         <div class="irow"><div class="iic">✂️</div><div><div class="ilbl">Services</div><div class="ival">Dry cleaning · Alterations · Shoe repair</div></div></div>
       </div>
@@ -355,68 +505,89 @@ html,body{min-height:100%;background:#f0f4ff;font-family:'Nunito',sans-serif;}
 <div class="toast" id="toast"></div>
 
 <script>
-// DEMO DATA
+var FORMSPREE='YOUR_FORMSPREE_ID';
+var orderType=null;
+var selectedItems={};
+var selectedSlot=null;
+var itemNotes='';
+var schedDate='';
+var pickupAddr='';
+var clientName='';
+var clientPhone='';
+
+var serviceItems=[
+  {id:'shirts',ic:'👔',name:'Dress Shirts',sub:'Per shirt',price:5},
+  {id:'suit',ic:'🤵',name:'Suit Jacket',sub:'Dry clean only',price:12},
+  {id:'dress',ic:'👗',name:'Dress / Gown',sub:'Delicate handling',price:18},
+  {id:'pants',ic:'👖',name:'Pants / Slacks',sub:'Pressed & cleaned',price:8},
+  {id:'coat',ic:'🧥',name:'Coat / Jacket',sub:'Full clean',price:15},
+  {id:'bedding',ic:'🛏️',name:'Bedding / Comforter',sub:'Deep clean',price:22},
+  {id:'alteration',ic:'✂️',name:'Alterations',sub:'Repairs & tailoring',price:0},
+  {id:'shoes',ic:'👟',name:'Shoe Repair',sub:'Clean & restore',price:0},
+];
+
 var demoOrders=[
-  {id:1047,name:'Maria Garcia',phone:'9725550101',items:'Dress shirts (3)',status:'ready',date:'Today',notes:'Light starch'},
-  {id:1046,name:'Robert Thompson',phone:'2145550202',items:'Suit jacket + pants',status:'progress',date:'Tomorrow',notes:''},
-  {id:1045,name:'Sandra Mitchell',phone:'4695550303',items:'Evening gown',status:'progress',date:'Tomorrow',notes:'Delicate fabric'},
-  {id:1044,name:'James Wilson',phone:'9725550404',items:'Mixed items (5)',status:'pending',date:'May 2',notes:''},
-  {id:1041,name:'Linda Chen',phone:'9725550707',items:'Bedding set',status:'ready',date:'Today',notes:'Queen size comforter'},
-  {id:1043,name:'Priya Patel',phone:'2145550505',items:'Dress shirts (2)',status:'ready',date:'Today',notes:''},
-  {id:1040,name:'Mike Johnson',phone:'2145550808',items:'Suit jacket',status:'progress',date:'Tomorrow',notes:'Important meeting Friday'},
+  {id:1047,name:'Maria G.',phone:'9725550101',items:'Dress shirts (3)',status:'ready',date:'Today',notes:'Light starch'},
+  {id:1046,name:'Robert T.',phone:'2145550202',items:'Suit jacket + pants',status:'progress',date:'Tomorrow',notes:''},
+  {id:1045,name:'Sandra M.',phone:'4695550303',items:'Evening gown',status:'progress',date:'Tomorrow',notes:'Delicate fabric'},
+  {id:1044,name:'James W.',phone:'9725550404',items:'Mixed items (5)',status:'pending',date:'Apr 30',notes:''},
 ];
 var demoClients=[
-  {phone:'9725550101',name:'Maria Garcia',stamps:8},
-  {phone:'2145550202',name:'Robert Thompson',stamps:4},
-  {phone:'4695550303',name:'Sandra Mitchell',stamps:2},
-  {phone:'9725550404',name:'James Wilson',stamps:9},
-  {phone:'9725550707',name:'Linda Chen',stamps:3},
-  {phone:'2145550505',name:'Priya Patel',stamps:5},
-  {phone:'2145550808',name:'Mike Johnson',stamps:6},
-  {phone:'4695550606',name:'Carlos Rivera',stamps:10},
+  {phone:'9725550101',name:'Maria G.',stamps:7},
+  {phone:'2145550202',name:'Robert T.',stamps:4},
+  {phone:'4695550303',name:'Sandra M.',stamps:2},
+  {phone:'9725550404',name:'James W.',stamps:9},
 ];
-var selectedSlot=null;
-var FORMSPREE='YOUR_FORMSPREE_ID';
 
 function toast(m){var el=document.getElementById('toast');el.textContent=m;el.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(function(){el.classList.remove('show');},2200);}
-
-function formatPhone(input){
-  var v=input.value.replace(/\D/g,'');
-  if(v.length>10)v=v.slice(0,10);
-  if(v.length>6)v='('+v.slice(0,3)+') '+v.slice(3,6)+'-'+v.slice(6);
-  else if(v.length>3)v='('+v.slice(0,3)+') '+v.slice(3);
-  else if(v.length>0)v='('+v;
-  input.value=v;
-}
+function formatPhone(input){var v=input.value.replace(/\D/g,'');if(v.length>10)v=v.slice(0,10);if(v.length>6)v='('+v.slice(0,3)+') '+v.slice(3,6)+'-'+v.slice(6);else if(v.length>3)v='('+v.slice(0,3)+') '+v.slice(3);else if(v.length>0)v='('+v;input.value=v;}
 function cleanPhone(ph){return ph.replace(/\D/g,'');}
 
-function lookupOrder(){
-  var ph=cleanPhone(document.getElementById('lookup-phone').value);
-  if(ph.length<10){toast('Enter a valid phone number');return;}
-  document.getElementById('not-found-msg').classList.remove('show');
-  document.getElementById('order-result').innerHTML='';
-  var found=demoOrders.filter(function(o){return cleanPhone(o.phone)===ph;});
-  if(!found.length){document.getElementById('not-found-msg').classList.add('show');return;}
-  document.getElementById('order-result').innerHTML=found.map(function(o){
-    var isReady=o.status==='ready';
-    var isPending=o.status==='pending';
-    var icBg=isReady?'#d1fae5':isPending?'#f3f4f6':'#dbeafe';
-    var ic=isReady?'✅':isPending?'🕐':'🧺';
-    var badgeCls=isReady?'badge-green':isPending?'badge-gray':'badge-blue';
-    var badgeTxt=isReady?'Ready for Pickup!':isPending?'Pending':'In Progress';
-    return'<div class="status-card">'
-      +'<div class="status-hdr"><div class="status-ic" style="background:'+icBg+';">'+ic+'</div>'
-      +'<div><div class="status-name">'+o.name+'</div><div class="status-num">Order #'+o.id+'</div></div></div>'
-      +'<div class="badge '+badgeCls+'"><div class="badge-dot"></div>'+badgeTxt+'</div>'
-      +'<div class="drow"><span class="dk">Items</span><span class="dv">'+o.items+'</span></div>'
-      +'<div class="drow"><span class="dk">Ready date</span><span class="dv">'+o.date+'</span></div>'
-      +(o.notes?'<div class="drow"><span class="dk">Notes</span><span class="dv">'+o.notes+'</span></div>':'')
-      +(isReady
-        ?'<div class="ready-msg"><div class="msg-ic">🎉</div><div><div class="msg-title" style="color:#065f46;">Your clothes are ready!</div><div class="msg-sub" style="color:#047857;">Come by anytime during business hours. We are at 3709 Spring Valley Rd, Addison. Drive-thru available!</div></div></div>'
-        :'<div class="notready-msg"><div class="msg-ic">⏳</div><div><div class="msg-title" style="color:#1e40af;">Not quite ready yet</div><div class="msg-sub" style="color:#1d4ed8;">You will get a text the moment it is done. Questions? Call (972) 243-1982.</div></div></div>'
-      )
-      +'</div>';
+function selectType(t){
+  orderType=t;
+  ['walkin','drivethru','pickup'].forEach(function(x){document.getElementById('type-'+x).classList.remove('on');});
+  document.getElementById('type-'+t).classList.add('on');
+  document.getElementById('step1-next').disabled=false;
+}
+
+function renderItems(){
+  var el=document.getElementById('items-list');
+  el.innerHTML=serviceItems.map(function(item){
+    var qty=selectedItems[item.id]||0;
+    var isOn=qty>0;
+    return'<div class="item-row'+(isOn?' on':'')+'" id="irow-'+item.id+'">'
+      +'<div class="item-check" onclick="toggleItem(\''+item.id+'\')">'
+      +'<span class="item-check-ic">✓</span></div>'
+      +'<div class="item-ic">'+item.ic+'</div>'
+      +'<div style="flex:1;min-width:0;"><div class="item-name">'+item.name+'</div><div class="item-sub">'+item.sub+(item.price>0?' · $'+item.price+'/ea':'')+'</div></div>'
+      +'<div class="item-qty">'
+      +'<div class="qty-btn" onclick="changeQty(\''+item.id+'\',-1)">−</div>'
+      +'<div class="qty-val" id="qty-'+item.id+'">'+qty+'</div>'
+      +'<div class="qty-btn" onclick="changeQty(\''+item.id+'\',1)">+</div>'
+      +'</div></div>';
   }).join('');
+}
+
+function toggleItem(id){
+  if(selectedItems[id]>0){selectedItems[id]=0;}else{selectedItems[id]=1;}
+  updateItemRow(id);checkItemsSelected();
+}
+function changeQty(id,delta){
+  var cur=selectedItems[id]||0;
+  var newQty=Math.max(0,cur+delta);
+  selectedItems[id]=newQty;
+  updateItemRow(id);checkItemsSelected();
+}
+function updateItemRow(id){
+  var qty=selectedItems[id]||0;
+  var row=document.getElementById('irow-'+id);
+  var qtyEl=document.getElementById('qty-'+id);
+  if(row)row.classList.toggle('on',qty>0);
+  if(qtyEl)qtyEl.textContent=qty;
+}
+function checkItemsSelected(){
+  var any=Object.values(selectedItems).some(function(v){return v>0;});
+  document.getElementById('step2-next').disabled=!any;
 }
 
 function generateSlots(){
@@ -431,83 +602,287 @@ function pickSlot(el,slot){
   selectedSlot=slot;
   document.querySelectorAll('.slot').forEach(function(d){d.classList.remove('on');});
   el.classList.add('on');
+  checkStep3();
+}
+function checkStep3(){
+  var dt=document.getElementById('sched-date').value;
+  var addr=orderType==='pickup'?document.getElementById('pickup-addr').value.trim():'ok';
+  document.getElementById('step3-next').disabled=!(dt&&selectedSlot&&addr);
+}
+function checkStep4(){
+  var nm=document.getElementById('info-name').value.trim();
+  var ph=document.getElementById('info-phone').value.trim();
+  document.getElementById('step4-next').disabled=!(nm&&ph.length>=14);
 }
 
-function submitSchedule(){
-  var nm=document.getElementById('sc-name').value.trim();
-  var ph=document.getElementById('sc-phone').value.trim();
-  var dt=document.getElementById('sc-date').value;
-  if(!nm||!ph||!dt||!selectedSlot){toast('Fill in all fields and pick a time slot');return;}
-  var body={_subject:'📅 DROP-OFF SCHEDULED: '+nm,name:nm,phone:ph,date:dt,time:selectedSlot,items:document.getElementById('sc-items').value,notes:document.getElementById('sc-notes').value||'None'};
-  if(FORMSPREE!=='YOUR_FORMSPREE_ID'){fetch('https://formspree.io/f/'+FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)}).catch(function(){});}
-  document.getElementById('sched-success').classList.add('show');
-  document.getElementById('sc-name').value='';document.getElementById('sc-phone').value='';document.getElementById('sc-notes').value='';
-  selectedSlot=null;generateSlots();
-  window.scrollTo({top:0,behavior:'smooth'});
-  toast('Drop-off scheduled!');
+function buildItemsSummary(){
+  var parts=[];
+  serviceItems.forEach(function(item){
+    var qty=selectedItems[item.id]||0;
+    if(qty>0)parts.push(item.name+(qty>1?' ('+qty+')':''));
+  });
+  return parts.join(', ')||'None selected';
 }
 
-function submitPickup(){
-  var nm=document.getElementById('pu-name').value.trim();
-  var ph=document.getElementById('pu-phone').value.trim();
-  var addr=document.getElementById('pu-addr').value.trim();
-  if(!nm||!ph||!addr){toast('Fill in your name, phone, and address');return;}
-  var body={_subject:'🚗 HOME PICKUP REQUEST: '+nm,name:nm,phone:ph,address:addr,date:document.getElementById('pu-date').value,time:document.getElementById('pu-time').value,items:document.getElementById('pu-items').value,notes:document.getElementById('pu-notes').value||'None'};
-  if(FORMSPREE!=='YOUR_FORMSPREE_ID'){fetch('https://formspree.io/f/'+FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)}).catch(function(){});}
-  document.getElementById('pickup-success').classList.add('show');
-  document.getElementById('pu-name').value='';document.getElementById('pu-phone').value='';document.getElementById('pu-addr').value='';document.getElementById('pu-notes').value='';
+function renderSummary(){
+  var typeLabel=orderType==='walkin'?'🚶 Walk In':orderType==='drivethru'?'🚗 Drive-Thru':'🏠 Home Pickup';
+  var el=document.getElementById('order-summary');
+  el.innerHTML='<div class="summary-row"><span class="sk">Drop-off type</span><span class="sv">'+typeLabel+'</span></div>'
+    +'<div class="summary-row"><span class="sk">Items</span><span class="sv">'+buildItemsSummary()+'</span></div>'
+    +(document.getElementById('item-notes').value?'<div class="summary-row"><span class="sk">Notes</span><span class="sv">'+document.getElementById('item-notes').value+'</span></div>':'')
+    +'<div class="summary-row"><span class="sk">Date</span><span class="sv">'+document.getElementById('sched-date').value+'</span></div>'
+    +'<div class="summary-row"><span class="sk">Time</span><span class="sv">'+selectedSlot+'</span></div>'
+    +(orderType==='pickup'?'<div class="summary-row"><span class="sk">Pickup address</span><span class="sv">'+document.getElementById('pickup-addr').value+'</span></div>':'')
+    +'<div class="summary-row"><span class="sk">Name</span><span class="sv">'+document.getElementById('info-name').value+'</span></div>'
+    +'<div class="summary-row"><span class="sk">Phone</span><span class="sv">'+document.getElementById('info-phone').value+'</span></div>';
+}
+
+function submitOrder(){
+  var nm=document.getElementById('info-name').value.trim();
+  var ph=document.getElementById('info-phone').value.trim();
+  var typeLabel=orderType==='walkin'?'Walk In':orderType==='drivethru'?'Drive-Thru':'Home Pickup';
+  var items=buildItemsSummary();
+  var dt=document.getElementById('sched-date').value;
+  var addr=orderType==='pickup'?document.getElementById('pickup-addr').value:'N/A';
+  var body={
+    _subject:'🧺 NEW ORDER — Metrocrest: '+nm,
+    name:nm,phone:ph,type:typeLabel,items:items,
+    date:dt,time:selectedSlot,address:addr,
+    notes:document.getElementById('item-notes').value||'None',
+    message:'NEW ORDER!\nName: '+nm+'\nPhone: '+ph+'\nType: '+typeLabel+'\nItems: '+items+'\nDate: '+dt+'\nTime: '+selectedSlot+'\nAddress: '+addr
+  };
+  if(FORMSPREE!=='YOUR_FORMSPREE_ID'){
+    fetch('https://formspree.io/f/'+FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)}).catch(function(){});
+  }
+  document.getElementById('confirm-phone-display').textContent=ph;
+  var typeLabel2=orderType==='walkin'?'🚶 Walk In':orderType==='drivethru'?'🚗 Drive-Thru':'🏠 Home Pickup';
+  document.getElementById('confirm-summary').innerHTML=
+    '<div class="summary-row"><span class="sk">Type</span><span class="sv">'+typeLabel2+'</span></div>'
+    +'<div class="summary-row"><span class="sk">Items</span><span class="sv">'+items+'</span></div>'
+    +'<div class="summary-row"><span class="sk">Date & Time</span><span class="sv">'+dt+' at '+selectedSlot+'</span></div>';
+  goStep(6);
+}
+
+function resetOrder(){
+  orderType=null;selectedItems={};selectedSlot=null;
+  ['walkin','drivethru','pickup'].forEach(function(x){document.getElementById('type-'+x).classList.remove('on');});
+  document.getElementById('step1-next').disabled=true;
+  document.getElementById('info-name').value='';
+  document.getElementById('info-phone').value='';
+  document.getElementById('item-notes').value='';
+  goStep(1);
+}
+
+function goStep(n){
+  for(var i=1;i<=6;i++){
+    var el=document.getElementById('order-step'+i);
+    if(el)el.style.display=(i===n?'block':'none');
+  }
+  if(n===2)renderItems();
+  if(n===3){
+    generateSlots();
+    var isPU=orderType==='pickup';
+    document.getElementById('sched-title').textContent=isPU?'When should we pick up? 📅':'When are you coming? 📅';
+    document.getElementById('sched-sub').textContent=isPU?'Pick your pickup date and time window.':'Pick your drop-off date and time slot.';
+    document.getElementById('pickup-addr-wrap').style.display=isPU?'block':'none';
+  }
+  if(n===5)renderSummary();
   window.scrollTo({top:0,behavior:'smooth'});
-  toast('Pickup requested!');
+}
+
+function lookupOrder(){
+  var ph=cleanPhone(document.getElementById('lookup-phone').value);
+  if(ph.length<10){toast('Enter a valid phone number');return;}
+  document.getElementById('not-found-msg').classList.remove('show');
+  document.getElementById('order-result').innerHTML='';
+  var found=demoOrders.filter(function(o){return cleanPhone(o.phone)===ph;});
+  if(!found.length){document.getElementById('not-found-msg').classList.add('show');return;}
+  document.getElementById('order-result').innerHTML=found.map(function(o){
+    var isReady=o.status==='ready';var isPending=o.status==='pending';
+    var icBg=isReady?'#d1fae5':isPending?'#f3f4f6':'#dbeafe';
+    var ic=isReady?'✅':isPending?'🕐':'🧺';
+    var badgeCls=isReady?'badge-green':isPending?'badge-gray':'badge-blue';
+    var badgeTxt=isReady?'Ready for Pickup!':isPending?'Pending':'In Progress';
+    return'<div class="status-card">'
+      +'<div class="status-hdr"><div class="status-ic" style="background:'+icBg+';">'+ic+'</div>'
+      +'<div><div class="status-name">'+o.name+'</div><div class="status-num">Order #'+o.id+'</div></div></div>'
+      +'<div class="badge '+badgeCls+'"><div class="badge-dot"></div>'+badgeTxt+'</div>'
+      +'<div class="drow"><span class="dk">Items</span><span class="dv">'+o.items+'</span></div>'
+      +'<div class="drow"><span class="dk">Ready date</span><span class="dv">'+o.date+'</span></div>'
+      +(o.notes?'<div class="drow"><span class="dk">Notes</span><span class="dv">'+o.notes+'</span></div>':'')
+      +(isReady?'<div class="ready-msg"><div class="msg-ic">🎉</div><div><div class="msg-title" style="color:#065f46;">Your clothes are ready!</div><div class="msg-sub" style="color:#047857;">Come by anytime. Drive-thru available at 3709 Spring Valley Rd, Addison!</div></div></div>'
+      :'<div class="notready-msg"><div class="msg-ic">⏳</div><div><div class="msg-title" style="color:#1e40af;">Not quite ready yet</div><div class="msg-sub" style="color:#1d4ed8;">You will get a text the moment it is done. Call us at (972) 243-1982.</div></div></div>')
+      +'</div>';
+  }).join('');
 }
 
 function lookupLoyalty(){
   var ph=cleanPhone(document.getElementById('loyalty-phone').value);
   if(ph.length<10){toast('Enter a valid phone number');return;}
   var client=demoClients.find(function(c){return cleanPhone(c.phone)===ph;});
-  if(!client){
-    document.getElementById('loyalty-result').innerHTML='<div style="background:var(--red-light);border:1.5px solid rgba(239,68,68,0.2);border-radius:20px;padding:18px;text-align:center;margin-bottom:12px;"><div style="font-size:28px;margin-bottom:8px;">🔍</div><div style="font-size:15px;font-weight:900;color:#991b1b;">No account found</div><div style="font-size:13px;color:#b91c1c;margin-top:4px;font-weight:600;">Stamps are added at drop off. Questions? Call (972) 243-1982.</div></div>';
-    return;
-  }
-  var s=client.stamps;
-  var pct=Math.min(s/10*100,100);
-  var stampsHtml='';
-  for(var i=0;i<10;i++){
-    if(i<s)stampsHtml+='<div class="stamp stamp-on">👔</div>';
-    else if(i===9)stampsHtml+='<div class="stamp stamp-gift">🎁</div>';
-    else stampsHtml+='<div class="stamp stamp-off">·</div>';
-  }
-  document.getElementById('loyalty-result').innerHTML=
-    '<div class="loyalty-hero">'
-    +'<div class="lh-top"><div><div class="lh-title">'+client.name+'</div><div class="lh-sub">Metrocrest Rewards</div></div>'
-    +'<div><div class="lh-count">'+s+'</div><div class="lh-count-lbl">STAMPS</div></div></div>'
-    +'<div class="lh-bar-wrap"><div class="lh-bar" style="width:'+pct+'%;"></div></div>'
-    +'<div class="lh-bar-lbls"><span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10 🎁</span></div>'
-    +'<div class="stamps-grid">'+stampsHtml+'</div>'
-    +'<div class="reward-strip"><div class="rs-ic">🎁</div><div><div class="rs-title">'+(10-s%10)+' more stamps until FREE cleaning!</div><div class="rs-sub">Valid on any single garment. No catch.</div></div></div>'
-    +'</div>';
+  if(!client){document.getElementById('loyalty-result').innerHTML='<div style="background:var(--red-light);border:1.5px solid rgba(239,68,68,0.2);border-radius:20px;padding:18px;text-align:center;margin-bottom:12px;"><div style="font-size:28px;margin-bottom:8px;">🔍</div><div style="font-size:15px;font-weight:900;color:#991b1b;">No account found</div><div style="font-size:13px;color:#b91c1c;margin-top:4px;font-weight:600;">Stamps are added at drop off. Call (972) 243-1982.</div></div>';return;}
+  var s=client.stamps;var pct=Math.min(s/10*100,100);
+  var sh='';for(var i=0;i<10;i++){if(i<s)sh+='<div class="stamp stamp-on">👔</div>';else if(i===9)sh+='<div class="stamp stamp-gift">🎁</div>';else sh+='<div class="stamp stamp-off">·</div>';}
+  document.getElementById('loyalty-result').innerHTML='<div class="loyalty-hero"><div class="lh-top"><div><div class="lh-title">'+client.name+'</div><div class="lh-sub">Metrocrest Rewards</div></div><div><div class="lh-count">'+s+'</div><div class="lh-count-lbl">STAMPS</div></div></div><div class="lh-bar-wrap"><div class="lh-bar" style="width:'+pct+'%;"></div></div><div class="lh-bar-lbls"><span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10 🎁</span></div><div class="stamps-grid">'+sh+'</div><div class="reward-strip"><div style="font-size:18px;flex-shrink:0;">🎁</div><div><div style="font-size:12px;font-weight:800;color:#ffd700;">'+(10-s%10)+' more stamps until FREE cleaning!</div><div style="font-size:10px;color:rgba(255,215,0,0.7);font-weight:600;margin-top:2px;">Valid on any single garment.</div></div></div></div>';
 }
 
 function goPage(n){
-  for(var i=0;i<5;i++){
-    var p=document.getElementById('page'+i);
-    var nt=document.getElementById('nt'+i);
-    if(p)p.classList.toggle('on',i===n);
-    if(nt)nt.classList.toggle('on',i===n);
-  }
-  if(n===1)generateSlots();
+  for(var i=0;i<4;i++){var p=document.getElementById('page'+i);var nt=document.getElementById('nt'+i);if(p)p.classList.toggle('on',i===n);if(nt)nt.classList.toggle('on',i===n);}
   document.getElementById('order-result').innerHTML='';
   document.getElementById('not-found-msg').classList.remove('show');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// Init
 (function(){
-  var today=new Date();
-  var tomorrow=new Date();tomorrow.setDate(today.getDate()+1);
-  var fmt=tomorrow.toISOString().split('T')[0];
-  document.getElementById('sc-date').value=fmt;
-  document.getElementById('pu-date').value=fmt;
+  var tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);
+  document.getElementById('sched-date').value=tomorrow.toISOString().split('T')[0];
+  document.getElementById('sched-date').addEventListener('change',checkStep3);
+  document.getElementById('sched-date').addEventListener('input',checkStep3);
 })();
+
+// ===== DOPAMINE ENGINE =====
+
+// Ripple effect on buttons
+function addRipple(e){
+  var btn=e.currentTarget;
+  var r=document.createElement('div');
+  r.className='ripple';
+  var rect=btn.getBoundingClientRect();
+  var size=Math.max(rect.width,rect.height)*2;
+  r.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(e.clientX-rect.left-size/2)+'px;top:'+(e.clientY-rect.top-size/2)+'px;';
+  btn.appendChild(r);
+  setTimeout(function(){r.remove();},600);
+}
+document.querySelectorAll('.next-btn,.fsub,.lookup-btn,.act-btn,.act-blue').forEach(function(el){
+  el.style.position='relative';
+  el.style.overflow='hidden';
+  el.addEventListener('click',addRipple);
+});
+
+// Confetti explosion on success
+function fireConfetti(){
+  var colors=['#1a56db','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899','#06b6d4'];
+  for(var i=0;i<60;i++){
+    (function(i){
+      setTimeout(function(){
+        var c=document.createElement('div');
+        c.className='confetti-piece';
+        var x=Math.random()*window.innerWidth;
+        var color=colors[Math.floor(Math.random()*colors.length)];
+        var size=(Math.random()*10)+6;
+        c.style.cssText='left:'+x+'px;top:'+(-20)+'px;background:'+color+';width:'+size+'px;height:'+size+'px;'
+          +'animation-duration:'+(Math.random()*0.8+0.8)+'s;'
+          +'animation-delay:'+(Math.random()*0.3)+'s;'
+          +'border-radius:'+(Math.random()>0.5?'50%':'2px')+';';
+        document.body.appendChild(c);
+        setTimeout(function(){c.remove();},2000);
+      },i*20);
+    })(i);
+  }
+}
+
+// Particles background
+var canvas=document.getElementById('particles');
+var ctx=canvas.getContext('2d');
+canvas.style.pointerEvents='none';
+var pts=[];
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+for(var i=0;i<25;i++){pts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1,o:Math.random()*0.12+0.04});}
+function drawParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pts.forEach(function(p){
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(26,86,219,'+p.o+')';ctx.fill();
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>canvas.width)p.vx*=-1;
+    if(p.y<0||p.y>canvas.height)p.vy*=-1;
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// Number ticker animation
+function animateNumber(el,from,to,suffix){
+  suffix=suffix||'';
+  var start=null;
+  var dur=600;
+  function step(ts){
+    if(!start)start=ts;
+    var prog=Math.min((ts-start)/dur,1);
+    var ease=1-Math.pow(1-prog,3);
+    el.textContent=Math.round(from+(to-from)*ease)+suffix;
+    if(prog<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// Haptic-style visual feedback on qty change
+var origChangeQty=changeQty;
+changeQty=function(id,delta){
+  origChangeQty(id,delta);
+  // Flash the qty number
+  var el=document.getElementById('qty-'+id);
+  if(el){
+    el.classList.add('count-anim');
+    setTimeout(function(){el.classList.remove('count-anim');},300);
+  }
+  // Pop the row
+  var row=document.getElementById('irow-'+id);
+  if(row&&(selectedItems[id]||0)>0){
+    row.classList.remove('just-added');
+    void row.offsetWidth;
+    row.classList.add('just-added');
+  }
+  // Toast with encouragement
+  var qty=selectedItems[id]||0;
+  var msgs=['Nice choice! 👔','Good one! ✨','Got it!','Adding that in!'];
+  if(delta>0&&qty===1)toast(msgs[Math.floor(Math.random()*msgs.length)]);
+};
+
+// Celebrate on step completion
+var origGoStep=goStep;
+goStep=function(n){
+  origGoStep(n);
+  if(n===6){
+    fireConfetti();
+    setTimeout(function(){fireConfetti();},400);
+  }
+  if(n>1&&n<6){
+    toast(n===2?'Step 1 done! 🔥':n===3?'Items locked in! 💪':n===4?'Almost there! ⚡':n===5?'Last step! 🎯':'');
+  }
+};
+
+// Slot selection celebration
+var origPickSlot=pickSlot;
+pickSlot=function(el,slot){
+  origPickSlot(el,slot);
+  toast('Time locked in! ⏰');
+};
+
+// Type selection celebration
+var origSelectType=selectType;
+selectType=function(t){
+  origSelectType(t);
+  var msgs={'walkin':'Walk-in selected! 🚶','drivethru':'Drive-thru — nice! 🚗','pickup':'Home pickup — fancy! 🏠'};
+  toast(msgs[t]);
+};
+
+// Success page icon pop
+var observer=new MutationObserver(function(muts){
+  muts.forEach(function(m){
+    if(m.target.id==='order-step6'&&m.target.style.display==='block'){
+      var ic=m.target.querySelector('[style*="font-size:52px"]');
+      if(ic){ic.classList.add('success-ic-wrap');}
+    }
+  });
+});
+for(var i=1;i<=6;i++){
+  var el=document.getElementById('order-step'+i);
+  if(el)observer.observe(el,{attributes:true,attributeFilter:['style']});
+}
+
 </script>
 </body>
 </html>
